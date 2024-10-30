@@ -7,6 +7,10 @@ on:
         type: string
         description: The git tag (version) from the calling workflow
         required: true
+      token:
+        type: string
+        description: The github token
+        required: true        
   workflow_dispatch:
     inputs:
       git_tag:
