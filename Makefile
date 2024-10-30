@@ -11,15 +11,28 @@ GOBIN=$(shell go env GOBIN)
 endif
 export PATH:=$(GOBIN):${PATH}
 
+# TODO: Add another condition for PR Tag/PR/Branch
 BRANCH ?= master
 TAG ?=
 # Then using TAG, the tar file starts with v, but the extracted dir does not
-SRC := $(shell echo $(if $(TAG),$(TAG),$(BRANCH)) | sed 's/^v//')
+ifdef PR_NUMBER
+    SRC = refs-pull-$(PR_NUMBER)-head
+	REFS_NAME = pull/$(PR_NUMBER)
+else ifdef TAG
+    SRC = $(shell echo $(TAG) | sed 's/^v//')
+	REFS_NAME=tags/$(TAG)
+else
+    SRC = $(BRANCH)
+	REFS_NAME=$(BRANCH)
+endif
 
 # Network Operator source tar location
-REPO_TAR_URL ?= https://github.com/Mellanox/network-operator/archive/refs/$(if $(TAG),tags/$(TAG),heads/$(BRANCH)).tar.gz
+#REPO_TAR_URL ?= https://github.com/Mellanox/network-operator/archive/refs/$(if $(TAG),tags/$(TAG),heads/$(BRANCH)).tar.gz
+REPO_TAR_URL = https://github.com/heyvister1/network-operator/archive/refs/$(REFS_NAME)/head.tar.gz
+#REPO_TAR_URL = github.com/heyvister1/network-operator/archive/refs/pull/2/head.tar.gz
 # release.yaml location
-RELEASE_YAML_URL ?= https://raw.githubusercontent.com/Mellanox/network-operator/$(if $(TAG),$(TAG),$(BRANCH))/hack/release.yaml
+#RELEASE_YAML_URL ?= https://raw.githubusercontent.com/Mellanox/network-operator/$(if $(TAG),$(TAG),$(BRANCH))/hack/release.yaml
+RELEASE_YAML_URL = https://raw.githubusercontent.com/heyvister1/network-operator/$(if $(TAG),$(TAG),$(BRANCH))/hack/release.yaml
 
 # Path to download the crd api to.
 CRD_API_DEP_ROOT = $(BUILDDIR)/crd
