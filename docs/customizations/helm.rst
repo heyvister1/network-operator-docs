@@ -42,10 +42,6 @@ General Parameters
      - Type
      - Default
      - Description
-   * - deployCR
-     - bool
-     - `false`
-     - Deploy ``NicClusterPolicy`` custom resource according to the provided parameters.
    * - imagePullSecrets
      - list
      - `[]`
@@ -109,6 +105,22 @@ General Parameters
      - object
      - `{}`
      - Configure node selector settings for the operator.
+   * - operator.ofedDriver.initContainer.enable
+     - bool
+     - `true`
+     - Deploy init container.
+   * - operator.ofedDriver.initContainer.image
+     - string
+     - `"network-operator-init-container"`
+     - Init container image name.
+   * - operator.ofedDriver.initContainer.repository
+     - string
+     - `"ghcr.io/mellanox"`
+     - Init container image repository.
+   * - operator.ofedDriver.initContainer.version
+     - string
+     - `"v0.0.2"`
+     - Init container image version.
    * - operator.repository
      - string
      - `"nvcr.io/nvstaging/mellanox"`
@@ -277,7 +289,7 @@ SR-IOV Network Operator Helm chart customization options can be found `here <htt
      -
    * - sriov-network-operator.images.operator
      - string
-     - `"nvcr.io/nvstaging/mellanox/sriov-network-operator:network-operator-24.10.0-beta.3"`
+     - `"nvcr.io/nvstaging/mellanox/sriov-network-operator:network-operator-24.10.0-beta.4"`
      -
    * - sriov-network-operator.images.ovsCni
      - string
@@ -293,7 +305,7 @@ SR-IOV Network Operator Helm chart customization options can be found `here <htt
      -
    * - sriov-network-operator.images.sriovConfigDaemon
      - string
-     - `"nvcr.io/nvstaging/mellanox/sriov-network-operator-config-daemon:network-operator-24.10.0-beta.3"`
+     - `"nvcr.io/nvstaging/mellanox/sriov-network-operator-config-daemon:network-operator-24.10.0-beta.4"`
      -
    * - sriov-network-operator.images.sriovDevicePlugin
      - string
@@ -301,7 +313,7 @@ SR-IOV Network Operator Helm chart customization options can be found `here <htt
      -
    * - sriov-network-operator.images.webhook
      - string
-     - `"nvcr.io/nvstaging/mellanox/sriov-network-operator-webhook:network-operator-24.10.0-beta.3"`
+     - `"nvcr.io/nvstaging/mellanox/sriov-network-operator-webhook:network-operator-24.10.0-beta.4"`
      -
    * - sriov-network-operator.operator.admissionControllers
      - yaml
@@ -409,7 +421,7 @@ NIC Configuration Operator Helm chart customization options can be found `here <
      -
    * - nic-configuration-operator-chart.configDaemon.image.tag
      - string
-     - `"v0.1.1"`
+     - `"v0.1.4"`
      -
    * - nic-configuration-operator-chart.operator.image.name
      - string
@@ -421,7 +433,7 @@ NIC Configuration Operator Helm chart customization options can be found `here <
      -
    * - nic-configuration-operator-chart.operator.image.tag
      - string
-     - `"v0.1.1"`
+     - `"v0.1.4"`
      -
 
 ===================
@@ -454,136 +466,6 @@ For example:
      - Type
      - Default
      - Description
-   * - ofedDriver.certConfig.name
-     - string
-     - `""`
-     - Custom TLS key/certificate configuration configMap name.
-   * - ofedDriver.deploy
-     - bool
-     - `false`
-     - Deploy the  NVIDIA DOCA Driver driver container.
-   * - ofedDriver.forcePrecompiled
-     - bool
-     - `false`
-     - Fail Mellanox OFED deployment if precompiled OFED driver container image does not exists.
-   * - ofedDriver.image
-     - string
-     - `"doca-driver"`
-     - NVIDIA DOCA Driver image name.
-   * - ofedDriver.initContainer.enable
-     - bool
-     - `true`
-     - Deploy init container.
-   * - ofedDriver.initContainer.image
-     - string
-     - `"network-operator-init-container"`
-     - Init container image name.
-   * - ofedDriver.initContainer.repository
-     - string
-     - `"ghcr.io/mellanox"`
-     - Init container image repository.
-   * - ofedDriver.initContainer.version
-     - string
-     - `"v0.0.2"`
-     - Init container image version.
-   * - ofedDriver.livenessProbe.initialDelaySeconds
-     - int
-     - `30`
-     - NVIDIA DOCA Driver liveness probe initial delay.
-   * - ofedDriver.livenessProbe.periodSeconds
-     - int
-     - `30`
-     - NVIDIA DOCA Driver liveness probe interval.
-   * - ofedDriver.readinessProbe.initialDelaySeconds
-     - int
-     - `10`
-     - NVIDIA DOCA Driver readiness probe initial delay.
-   * - ofedDriver.readinessProbe.periodSeconds
-     - int
-     - `30`
-     - NVIDIA DOCA Driver readiness probe interval.
-   * - ofedDriver.repoConfig
-     - yaml
-     - .. code-block:: yaml
-
-          name: ""
-         
-     - Private mirror repository configuration.
-   * - ofedDriver.repository
-     - string
-     - `"nvcr.io/nvstaging/mellanox"`
-     - NVIDIA DOCA Driver image repository.
-   * - ofedDriver.startupProbe.initialDelaySeconds
-     - int
-     - `10`
-     - NVIDIA DOCA Driver startup probe initial delay.
-   * - ofedDriver.startupProbe.periodSeconds
-     - int
-     - `20`
-     - NVIDIA DOCA Driver startup probe interval.
-   * - ofedDriver.terminationGracePeriodSeconds
-     - int
-     - `300`
-     - The grace period before the driver containeris forcibly removed.
-   * - ofedDriver.upgradePolicy.autoUpgrade
-     - bool
-     - `true`
-     - Global switch for automatic upgrade feature, if set to false all other options are ignored.
-   * - ofedDriver.upgradePolicy.drain
-     - yaml
-     - .. code-block:: yaml
-
-          # -- Options for node drain (``kubectl drain``) before driver reload, if
-          # auto upgrade is enabled.
-          enable: true
-          # -- Use force drain of pods.
-          force: true
-          # -- Pod selector to specify which pods will be drained from the node.
-          # An empty selector means all pods.
-          podSelector: ""
-          # -- It's recommended to set a timeout to avoid infinite drain in case
-          # non-fatal error keeps happening on retries.
-          timeoutSeconds: 300
-          # -- Delete pods local storage.
-          deleteEmptyDir: true
-         
-     - Options for node drain (`kubectl drain`) before the driver reload. If auto upgrade is enabled but drain.enable is false, then driver POD will be reloaded immediately without removing PODs from the node.
-   * - ofedDriver.upgradePolicy.drain.deleteEmptyDir
-     - bool
-     - `true`
-     - Delete pods local storage.
-   * - ofedDriver.upgradePolicy.drain.enable
-     - bool
-     - `true`
-     - Options for node drain (``kubectl drain``) before driver reload, if auto upgrade is enabled.
-   * - ofedDriver.upgradePolicy.drain.force
-     - bool
-     - `true`
-     - Use force drain of pods.
-   * - ofedDriver.upgradePolicy.drain.podSelector
-     - string
-     - `""`
-     - Pod selector to specify which pods will be drained from the node. An empty selector means all pods.
-   * - ofedDriver.upgradePolicy.drain.timeoutSeconds
-     - int
-     - `300`
-     - It's recommended to set a timeout to avoid infinite drain in case non-fatal error keeps happening on retries.
-   * - ofedDriver.upgradePolicy.maxParallelUpgrades
-     - int
-     - `1`
-     - Number of nodes that can be upgraded in parallel (default: 1). 0 means no limit, all nodes will be upgraded in parallel.
-   * - ofedDriver.upgradePolicy.safeLoad
-     - bool
-     - `false`
-     - Cordon and drain (if enabled) a node before loading the driver on it.
-   * - ofedDriver.upgradePolicy.waitForCompletion
-     - string
-     - `nil`
-     -
-   * - ofedDriver.version
-     - string
-     - `"24.10-0.4.6.0-0"`
-     - NVIDIA DOCA Driver version.
 
 ===============================================
 NVIDIA DOCA Driver Driver Environment Variables
@@ -652,35 +534,6 @@ RDMA Shared Device Plugin
      - Type
      - Default
      - Description
-   * - rdmaSharedDevicePlugin.deploy
-     - bool
-     - `true`
-     - Deploy RDMA shared device plugin.
-   * - rdmaSharedDevicePlugin.image
-     - string
-     - `"k8s-rdma-shared-dev-plugin"`
-     - RDMA shared device plugin image name.
-   * - rdmaSharedDevicePlugin.repository
-     - string
-     - `"ghcr.io/mellanox"`
-     - RDMA shared device plugin image repository.
-   * - rdmaSharedDevicePlugin.resources
-     - yaml
-     - .. code-block:: yaml
-
-          - name: rdma_shared_device_a
-            vendors: [15b3]
-            rdmaHcaMax: 63
-         
-     - The following defines the RDMA resources in the cluster. It must be provided by the user when deploying the chart. Each entry in the resources element will create a resource with the provided <name> and list of devices.
-   * - rdmaSharedDevicePlugin.useCdi
-     - bool
-     - `false`
-     - Enable Container Device Interface (CDI) mode. **NOTE**: NVIDIA Network Operator does not configure container runtime to enable CDI.
-   * - rdmaSharedDevicePlugin.version
-     - string
-     - `"sha-4f3eb2224b8b5f97be3f17441ddee8d41753b7d5"`
-     - RDMA shared device plugin version.
 
 ==========================================
 RDMA Device Plugin Resource Configurations
@@ -713,34 +566,6 @@ SR-IOV Network Device Plugin
      - Type
      - Default
      - Description
-   * - sriovDevicePlugin.deploy
-     - bool
-     - `false`
-     - Deploy SR-IOV Network device plugin.
-   * - sriovDevicePlugin.image
-     - string
-     - `"sriov-network-device-plugin"`
-     - SR-IOV Network device plugin image name.
-   * - sriovDevicePlugin.repository
-     - string
-     - `"ghcr.io/k8snetworkplumbingwg"`
-     - SR-IOV Network device plugin image repository.
-   * - sriovDevicePlugin.resources[0].name
-     - string
-     - `"hostdev"`
-     -
-   * - sriovDevicePlugin.resources[0].vendors[0]
-     - string
-     - `"15b3"`
-     -
-   * - sriovDevicePlugin.useCdi
-     - bool
-     - `false`
-     - Enable Container Device Interface (CDI) mode. **NOTE**: NVIDIA Network Operator does not configure container runtime to enable CD.
-   * - sriovDevicePlugin.version
-     - string
-     - `"v3.7.0"`
-     - SR-IOV Network device plugin version
 
 ===================================================
 SR-IOV Network Device Plugin Resource Configuration
@@ -774,38 +599,6 @@ ib-kubernetes provides a daemon that works in conjunction with the `SR-IOV Netwo
      - Type
      - Default
      - Description
-   * - ibKubernetes.deploy
-     - bool
-     - `false`
-     - Deploy IB Kubernetes.
-   * - ibKubernetes.image
-     - string
-     - `"ib-kubernetes"`
-     - IB Kubernetes image name.
-   * - ibKubernetes.pKeyGUIDPoolRangeEnd
-     - string
-     - `"02:FF:FF:FF:FF:FF:FF:FF"`
-     - Maximal available GUID value to be allocated for the pod.
-   * - ibKubernetes.pKeyGUIDPoolRangeStart
-     - string
-     - `"02:00:00:00:00:00:00:00"`
-     - Minimal available GUID value to be allocated for the pod.
-   * - ibKubernetes.periodicUpdateSeconds
-     - int
-     - `5`
-     - Interval of periodic update in seconds.
-   * - ibKubernetes.repository
-     - string
-     - `"ghcr.io/mellanox"`
-     - IB Kubernetes image repository.
-   * - ibKubernetes.ufmSecret
-     - string
-     - `""`
-     - Name of the Secret with the NVIDIA UFM access credentials, deployed in advance.
-   * - ibKubernetes.version
-     - string
-     - `"v1.1.0"`
-     - IB Kubernetes version.
 
 ==========
 UFM Secret
@@ -845,26 +638,6 @@ NVIDIA IPAM Plugin
      - Type
      - Default
      - Description
-   * - nvIpam.deploy
-     - bool
-     - `true`
-     - Deploy NVIDIA IPAM Plugin.
-   * - nvIpam.enableWebhook
-     - bool
-     - `false`
-     - Enable deployment of the validataion webhook for IPPool CRD.
-   * - nvIpam.image
-     - string
-     - `"nvidia-k8s-ipam"`
-     - NVIDIA IPAM Plugin image name.
-   * - nvIpam.repository
-     - string
-     - `"ghcr.io/mellanox"`
-     - NVIDIA IPAM Plugin image repository.
-   * - nvIpam.version
-     - string
-     - `"v0.2.0"`
-     - NVIDIA IPAM Plugin image version.
 
 .. warning::
    Supported X.509 certificate management system should be available in the cluster to enable the validation webhook. Currently, the supported systems are `certmanager <https://cert-manager.io/>`_ and `Openshift certificate management <https://docs.openshift.com/container-platform/latest/security/certificates/service-serving-certificate.html>`_.
@@ -887,74 +660,6 @@ Specifies components to deploy in order to facilitate a secondary network in Kub
      - Type
      - Default
      - Description
-   * - secondaryNetwork.cniPlugins.deploy
-     - bool
-     - `true`
-     - Deploy CNI Plugins Secondary Network.
-   * - secondaryNetwork.cniPlugins.image
-     - string
-     - `"plugins"`
-     - CNI Plugins image name.
-   * - secondaryNetwork.cniPlugins.repository
-     - string
-     - `"ghcr.io/k8snetworkplumbingwg"`
-     - CNI Plugins image repository.
-   * - secondaryNetwork.cniPlugins.version
-     - string
-     - `"v1.5.0"`
-     - CNI Plugins image version.
-   * - secondaryNetwork.deploy
-     - bool
-     - `true`
-     - Deploy Secondary Network.
-   * - secondaryNetwork.ipamPlugin.deploy
-     - bool
-     - `false`
-     - Deploy IPAM CNI Plugin Secondary Network.
-   * - secondaryNetwork.ipamPlugin.image
-     - string
-     - `"whereabouts"`
-     - IPAM CNI Plugin image name.
-   * - secondaryNetwork.ipamPlugin.repository
-     - string
-     - `"ghcr.io/k8snetworkplumbingwg"`
-     - IPAM CNI Plugin image repository.
-   * - secondaryNetwork.ipamPlugin.version
-     - string
-     - `"v0.7.0"`
-     - IPAM CNI Plugin image version.
-   * - secondaryNetwork.ipoib.deploy
-     - bool
-     - `false`
-     - Deploy IPoIB CNI.
-   * - secondaryNetwork.ipoib.image
-     - string
-     - `"ipoib-cni"`
-     - IPoIB CNI image name.
-   * - secondaryNetwork.ipoib.repository
-     - string
-     - `"ghcr.io/mellanox"`
-     - IPoIB CNI image repository.
-   * - secondaryNetwork.ipoib.version
-     - string
-     - `"v1.2.0"`
-     - IPoIB CNI image version.
-   * - secondaryNetwork.multus.deploy
-     - bool
-     - `true`
-     - Deploy Multus Secondary Network.
-   * - secondaryNetwork.multus.image
-     - string
-     - `"multus-cni"`
-     - Multus image name.
-   * - secondaryNetwork.multus.repository
-     - string
-     - `"ghcr.io/k8snetworkplumbingwg"`
-     - Multus image repository.
-   * - secondaryNetwork.multus.version
-     - string
-     - `"v4.1.0"`
-     - Multus image version.
 
 ============================
 NVIDIA NIC Feature Discovery
@@ -969,22 +674,6 @@ NVIDIA NIC Feature Discovery
      - Type
      - Default
      - Description
-   * - nicFeatureDiscovery.deploy
-     - bool
-     - `false`
-     - Deploy NVIDIA NIC Feature Discovery.
-   * - nicFeatureDiscovery.image
-     - string
-     - `"nic-feature-discovery"`
-     - NVIDIA NIC Feature Discovery image name.
-   * - nicFeatureDiscovery.repository
-     - string
-     - `"ghcr.io/mellanox"`
-     - NVIDIA NIC Feature Discovery repository.
-   * - nicFeatureDiscovery.version
-     - string
-     - `"v0.0.1"`
-     - NVIDIA NIC Feature Discovery image version.
 
 ======================
 DOCA Telemetry Service
@@ -998,22 +687,6 @@ DOCA Telemetry Service
      - Type
      - Default
      - Description
-   * - docaTelemetryService.deploy
-     - bool
-     - `false`
-     - Deploy DOCA Telemetry Service.
-   * - docaTelemetryService.image
-     - string
-     - `"doca_telemetry"`
-     - DOCA Telemetry Service image name.
-   * - docaTelemetryService.repository
-     - string
-     - `"nvcr.io/nvidia/doca"`
-     - DOCA Telemetry Service image repository.
-   * - docaTelemetryService.version
-     - string
-     - `"1.16.5-doca2.6.0-host"`
-     - DOCA Telemetry Service image version.
 
 =======================
 Helm customization file
