@@ -6,9 +6,9 @@ on:
       git_tag:
         type: string
         description: The git tag (version) from the calling workflow
-        required: true
-      token:
-        type: string
+        required: false
+    secrets:
+      token:      
         description: The github token
         required: true
   workflow_dispatch:
@@ -16,6 +16,10 @@ on:
       git_tag:
         type: string
         description: The git tag (version) to use for `$TAG`
+        required: false
+    secrets:
+      token:
+        description: The github token
         required: true
 
 jobs:
@@ -44,17 +48,16 @@ jobs:
         done
     - name: Create PR
       env:
-        DOWNSTREAM_REPO_OWNER: nvidia-ci-cd
+        DOWNSTREAM_REPO_OWNER: heyvister1
         DOWNSTREAM_FEATURE_BRANCH: update-docs-for-${{ env.TAG }}
-        UPSTREAM_REPO_OWNER: Mellanox
+        UPSTREAM_REPO_OWNER: heyvister1
         UPSTREAM_DEFAULT_BRANCH: main
         COMMIT_MESSAGE: ${{ env.PR_TITLE_PREFIX }} ${{ env.TAG }}
       run: |
-        git config user.name  nvidia-ci-cd
-        git config user.email svc-cloud-orch-gh@nvidia.com
-        gh repo fork --remote --default-branch-only
-        gh repo sync $DOWNSTREAM_REPO_OWNER/${{ github.event.repository.name }} --source $UPSTREAM_REPO_OWNER/${{ github.event.repository.name }} --branch $UPSTREAM_DEFAULT_BRANCH
+        git config user.name  heyvister1
+        git config user.email iheyvi@nvidia.com
 
+        git checkout test-netops-docs-workflow
         git checkout -b $DOWNSTREAM_FEATURE_BRANCH
         git status
         git add docs
