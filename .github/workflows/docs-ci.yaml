@@ -7,6 +7,14 @@ on:
         type: string
         description: The git tag (version) from the calling workflow
         required: false
+      ref_type:
+        type: string
+        description: ref type
+        required: false
+      ref_name:
+        type: string
+        description: ref name
+        required: false        
     secrets:
       token:      
         description: The github token
@@ -22,8 +30,10 @@ jobs:
   docs-ci:
     runs-on: ubuntu-latest
     env:
-      GH_TOKEN: ${{ secrets.GH_TOKEN_NVIDIA_CI_CD }}
+      GH_TOKEN: ${{ secrets.token }}
       TAG: ${{ inputs.git_tag }}
+      REF_TYPE: ${{ inputs.ref_type }}
+      REF_NAME: ${{ inputs.ref_name }}
       PR_TITLE_PREFIX: "task: update documentation for"
     steps:
     - uses: actions/checkout@v4
@@ -47,13 +57,18 @@ jobs:
         DOWNSTREAM_REPO_OWNER: heyvister1
         DOWNSTREAM_FEATURE_BRANCH: update-docs-for-${{ env.TAG }}
         UPSTREAM_REPO_OWNER: heyvister1
-        UPSTREAM_DEFAULT_BRANCH: main
+        UPSTREAM_DEFAULT_BRANCH: ${{ env.BRANCH }}
         COMMIT_MESSAGE: ${{ env.PR_TITLE_PREFIX }} ${{ env.TAG }}
       run: |
+        #cd ..
+        #gh repo clone https://heyvister1:${GH_TOKEN}@github.com/heyvister1/network-operator-docs.git
+        #cd network-operator-docs
+
+        git remote -v
+        git fetch origin
+
         git config user.name  heyvister1
         git config user.email iheyvi@nvidia.com
-
-        git checkout test-netops-docs-workflow
         git checkout -b $DOWNSTREAM_FEATURE_BRANCH
         git status
         git add docs
