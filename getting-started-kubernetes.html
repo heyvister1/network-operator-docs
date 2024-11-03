@@ -227,7 +227,7 @@ Deploying NFD from either NVIDIA Network Operator or NVIDIA GPU Operator will ha
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> helm install network-operator nvidia/network-operator <span class="se">\</span>
    -n nvidia-network-operator <span class="se">\</span>
    --create-namespace <span class="se">\</span>
-   --version v24.10.0-beta.4 <span class="se">\</span>
+   --version v24.10.0-beta.5 <span class="se">\</span>
    --wait
 </pre></div>
 </div>
@@ -242,13 +242,13 @@ Deploying NFD from either NVIDIA Network Operator or NVIDIA GPU Operator will ha
 <p class="admonition-title">Warning</p>
 <p>Since several parameters should be provided when creating custom resources during operator deployment, it is recommended to use a configuration file. While it is possible to override the parameters via CLI, we recommend to avoid the use of CLI arguments in favor of a configuration file.</p>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>helm show values nvidia/network-operator --version v24.10.0-beta.4 &gt; values.yaml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>helm show values nvidia/network-operator --version v24.10.0-beta.5 &gt; values.yaml
 </pre></div>
 </div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> helm install network-operator nvidia/network-operator <span class="se">\</span>
    -n nvidia-network-operator <span class="se">\</span>
    --create-namespace <span class="se">\</span>
-   --version v24.10.0-beta.4 <span class="se">\</span>
+   --version v24.10.0-beta.5 <span class="se">\</span>
    -f ./values.yaml <span class="se">\</span>
    --wait
 </pre></div>
@@ -284,7 +284,7 @@ Deploying NFD from either NVIDIA Network Operator or NVIDIA GPU Operator will ha
 <span class="w">   </span><span class="nt">ofedDriver</span><span class="p">:</span><span class="w"></span>
 <span class="w">     </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doca-driver</span><span class="w"></span>
 <span class="w">     </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvcr.io/nvidia/mellanox</span><span class="w"></span>
-<span class="w">     </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">24.10-0.5.5.0-0</span><span class="w"></span>
+<span class="w">     </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">24.10-0.6.2.0-0</span><span class="w"></span>
 <span class="w">     </span><span class="nt">forcePrecompiled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
 <span class="w">     </span><span class="nt">imagePullSecrets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w"></span>
 <span class="w">     </span><span class="nt">terminationGracePeriodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">300</span><span class="w"></span>
@@ -354,7 +354,7 @@ Deploying NFD from either NVIDIA Network Operator or NVIDIA GPU Operator will ha
 <span class="w">   </span><span class="nt">ofedDriver</span><span class="p">:</span><span class="w"></span>
 <span class="w">     </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doca-driver</span><span class="w"></span>
 <span class="w">     </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvcr.io/nvidia/mellanox</span><span class="w"></span>
-<span class="w">     </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">24.10-0.5.5.0-0</span><span class="w"></span>
+<span class="w">     </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">24.10-0.6.2.0-0</span><span class="w"></span>
 <span class="w">     </span><span class="nt">forcePrecompiled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
 <span class="w">     </span><span class="nt">imagePullSecrets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w"></span>
 <span class="w">     </span><span class="nt">terminationGracePeriodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">300</span><span class="w"></span>
@@ -787,7 +787,7 @@ Deploying NFD from either NVIDIA Network Operator or NVIDIA GPU Operator will ha
 <span class="w">   </span><span class="nt">ofedDriver</span><span class="p">:</span><span class="w"></span>
 <span class="w">     </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doca-driver</span><span class="w"></span>
 <span class="w">     </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvcr.io/nvidia/mellanox</span><span class="w"></span>
-<span class="w">     </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">24.10-0.5.5.0-0</span><span class="w"></span>
+<span class="w">     </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">24.10-0.6.2.0-0</span><span class="w"></span>
 <span class="w">     </span><span class="nt">forcePrecompiled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
 <span class="w">     </span><span class="nt">imagePullSecrets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w"></span>
 <span class="w">     </span><span class="nt">terminationGracePeriodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">300</span><span class="w"></span>
@@ -958,7 +958,7 @@ Deploying NFD from either NVIDIA Network Operator or NVIDIA GPU Operator will ha
 <span class="w">   </span><span class="nt">ofedDriver</span><span class="p">:</span><span class="w"></span>
 <span class="w">     </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doca-driver</span><span class="w"></span>
 <span class="w">     </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvcr.io/nvidia/mellanox</span><span class="w"></span>
-<span class="w">     </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">24.10-0.5.5.0-0</span><span class="w"></span>
+<span class="w">     </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">24.10-0.6.2.0-0</span><span class="w"></span>
 <span class="w">     </span><span class="nt">forcePrecompiled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
 <span class="w">     </span><span class="nt">imagePullSecrets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w"></span>
 <span class="w">     </span><span class="nt">terminationGracePeriodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">300</span><span class="w"></span>
@@ -1128,7 +1128,7 @@ Deploying NFD from either NVIDIA Network Operator or NVIDIA GPU Operator will ha
 <span class="w">   </span><span class="nt">ofedDriver</span><span class="p">:</span><span class="w"></span>
 <span class="w">     </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doca-driver</span><span class="w"></span>
 <span class="w">     </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvcr.io/nvidia/mellanox</span><span class="w"></span>
-<span class="w">     </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">24.10-0.5.5.0-0</span><span class="w"></span>
+<span class="w">     </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">24.10-0.6.2.0-0</span><span class="w"></span>
 <span class="w">     </span><span class="nt">forcePrecompiled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
 <span class="w">     </span><span class="nt">imagePullSecrets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w"></span>
 <span class="w">     </span><span class="nt">terminationGracePeriodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">300</span><span class="w"></span>
@@ -1406,7 +1406,7 @@ whereabouts-zvhrv                               <span class="m">1</span>/1     R
 <span class="w">   </span><span class="nt">ofedDriver</span><span class="p">:</span><span class="w"></span>
 <span class="w">     </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doca-driver</span><span class="w"></span>
 <span class="w">     </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvcr.io/nvidia/mellanox</span><span class="w"></span>
-<span class="w">     </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">24.10-0.5.5.0-0</span><span class="w"></span>
+<span class="w">     </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">24.10-0.6.2.0-0</span><span class="w"></span>
 <span class="w">     </span><span class="nt">forcePrecompiled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
 <span class="w">     </span><span class="nt">imagePullSecrets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w"></span>
 <span class="w">     </span><span class="nt">terminationGracePeriodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">300</span><span class="w"></span>
@@ -1535,10 +1535,15 @@ whereabouts-zvhrv                               <span class="m">1</span>/1     R
 <li><p>Only a single PKey can be configured per workload pod.</p></li>
 <li><p>When a single instance of NVIDIA UFM is used with several K8s clusters, different PKey GUID pools should be configured for each cluster.</p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>ib-kubernetes provides a daemon that works in conjunction with the <a class="reference external" href="https://github.com/openshift/sriov-network-operator">SR-IOV Network Device Plugin</a>. It acts on Kubernetes pod object changes (Create/Update/Delete), reading the pod’s network annotation, fetching its corresponding network CRD and reading the PKey. This is done in order to add the newly generated GUID or the predefined GUID in the GUID field of the CRD cni-args to that PKey for pods with <code class="docutils literal notranslate"><span class="pre">mellanox.infiniband.app</span></code> annotation.</p>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p><cite>ib-kubernetes-ufm-secret</cite> should be created before NicClusterPolicy.</p>
 </div>
+<p>IB Kubernetes must access <a class="reference external" href="https://www.nvidia.com/en-us/networking/infiniband/ufm/">NVIDIA UFM</a> in order to manage pods’ GUIDs. To provide its credentials, the secret of the following format should be deployed in advance:</p>
 <p><code class="docutils literal notranslate"><span class="pre">ufm-secret.yaml</span></code></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span><span class="w"></span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Secret</span><span class="w"></span>
@@ -1579,7 +1584,7 @@ whereabouts-zvhrv                               <span class="m">1</span>/1     R
 <span class="w">   </span><span class="nt">ofedDriver</span><span class="p">:</span><span class="w"></span>
 <span class="w">     </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doca-driver</span><span class="w"></span>
 <span class="w">     </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvcr.io/nvidia/mellanox</span><span class="w"></span>
-<span class="w">     </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">24.10-0.5.5.0-0</span><span class="w"></span>
+<span class="w">     </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">24.10-0.6.2.0-0</span><span class="w"></span>
 <span class="w">     </span><span class="nt">forcePrecompiled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
 <span class="w">     </span><span class="nt">imagePullSecrets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w"></span>
 <span class="w">     </span><span class="nt">terminationGracePeriodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">300</span><span class="w"></span>
@@ -1765,7 +1770,7 @@ whereabouts-zvhrv                               <span class="m">1</span>/1     R
 <span class="w">   </span><span class="nt">ofedDriver</span><span class="p">:</span><span class="w"></span>
 <span class="w">     </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doca-driver</span><span class="w"></span>
 <span class="w">     </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvcr.io/nvidia/mellanox</span><span class="w"></span>
-<span class="w">     </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">24.10-0.5.5.0-0</span><span class="w"></span>
+<span class="w">     </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">24.10-0.6.2.0-0</span><span class="w"></span>
 <span class="w">   </span><span class="nt">sriovDevicePlugin</span><span class="p">:</span><span class="w"></span>
 <span class="w">     </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sriov-network-device-plugin</span><span class="w"></span>
 <span class="w">     </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/k8snetworkplumbingwg</span><span class="w"></span>
@@ -2433,7 +2438,7 @@ ovs-vsctl add-port mybr bond0 -- <span class="nb">set</span> Interface bond0 <sp
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, NVIDIA.
-      <span class="lastupdated">Last updated on Oct 30, 2024.
+      <span class="lastupdated">Last updated on Nov 03, 2024.
       </span></p>
   </div>
 
