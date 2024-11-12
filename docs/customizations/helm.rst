@@ -42,6 +42,10 @@ General Parameters
      - Type
      - Default
      - Description
+   * - deployCR
+     - bool
+     - `false`
+     - Deploy ``NicClusterPolicy`` custom resource according to the provided parameters.
    * - imagePullSecrets
      - list
      - `[]`
@@ -105,22 +109,6 @@ General Parameters
      - object
      - `{}`
      - Configure node selector settings for the operator.
-   * - operator.ofedDriver.initContainer.enable
-     - bool
-     - `true`
-     - Deploy init container.
-   * - operator.ofedDriver.initContainer.image
-     - string
-     - `"network-operator-init-container"`
-     - Init container image name.
-   * - operator.ofedDriver.initContainer.repository
-     - string
-     - `"ghcr.io/mellanox"`
-     - Init container image repository.
-   * - operator.ofedDriver.initContainer.version
-     - string
-     - `"v0.0.2"`
-     - Init container image version.
    * - operator.repository
      - string
      - `"nvcr.io/nvstaging/mellanox"`
@@ -289,7 +277,7 @@ SR-IOV Network Operator Helm chart customization options can be found `here <htt
      -
    * - sriov-network-operator.images.operator
      - string
-     - `"nvcr.io/nvstaging/mellanox/sriov-network-operator:network-operator-24.10.0-beta.5"`
+     - `"nvcr.io/nvstaging/mellanox/sriov-network-operator:network-operator-24.10.0-beta.3"`
      -
    * - sriov-network-operator.images.ovsCni
      - string
@@ -305,7 +293,7 @@ SR-IOV Network Operator Helm chart customization options can be found `here <htt
      -
    * - sriov-network-operator.images.sriovConfigDaemon
      - string
-     - `"nvcr.io/nvstaging/mellanox/sriov-network-operator-config-daemon:network-operator-24.10.0-beta.5"`
+     - `"nvcr.io/nvstaging/mellanox/sriov-network-operator-config-daemon:network-operator-24.10.0-beta.3"`
      -
    * - sriov-network-operator.images.sriovDevicePlugin
      - string
@@ -313,7 +301,7 @@ SR-IOV Network Operator Helm chart customization options can be found `here <htt
      -
    * - sriov-network-operator.images.webhook
      - string
-     - `"nvcr.io/nvstaging/mellanox/sriov-network-operator-webhook:network-operator-24.10.0-beta.5"`
+     - `"nvcr.io/nvstaging/mellanox/sriov-network-operator-webhook:network-operator-24.10.0-beta.3"`
      -
    * - sriov-network-operator.operator.admissionControllers
      - yaml
@@ -421,7 +409,7 @@ NIC Configuration Operator Helm chart customization options can be found `here <
      -
    * - nic-configuration-operator-chart.configDaemon.image.tag
      - string
-     - `"v0.1.5"`
+     - `"v0.1.1"`
      -
    * - nic-configuration-operator-chart.operator.image.name
      - string
@@ -433,7 +421,7 @@ NIC Configuration Operator Helm chart customization options can be found `here <
      -
    * - nic-configuration-operator-chart.operator.image.tag
      - string
-     - `"v0.1.5"`
+     - `"v0.1.1"`
      -
 
 =======================
