@@ -12,15 +12,21 @@ endif
 export PATH:=$(GOBIN):${PATH}
 
 # TODO: Add another condition for PR Tag/PR/Branch
+PR_BRANCH ?=
 BRANCH ?= master
 TAG ?=
 # Then using TAG, the tar file starts with v, but the extracted dir does not
-SRC := $(shell echo $(if $(TAG),$(TAG),$(BRANCH)) | sed 's/^v//')
+ifdef PR_NUMBER
+    SRC = refs-pull-$(PR_NUMBER)-head
+	BRANCH = $(PR_BRANCH)
+else
+    SRC = $(shell echo $(if $(TAG),$(TAG),$(BRANCH)) | sed 's/^v//')
+endif
 
 # Network Operator source tar location
 #REPO_TAR_URL ?= https://github.com/Mellanox/network-operator/archive/refs/$(if $(TAG),tags/$(TAG),heads/$(BRANCH)).tar.gz
-REPO_TAR_URL = https://github.com/heyvister1/network-operator/archive/refs/$(if $(TAG),tags/$(TAG),heads/$(BRANCH)).tar.gz
-
+REPO_TAR_URL = https://github.com/heyvister1/network-operator/archive/refs/$(if $(TAG),tags/$(TAG),pull/$(PR_NUMBER))/head.tar.gz
+#REPO_TAR_URL = github.com/heyvister1/network-operator/archive/refs/pull/2/head.tar.gz
 # release.yaml location
 #RELEASE_YAML_URL ?= https://raw.githubusercontent.com/Mellanox/network-operator/$(if $(TAG),$(TAG),$(BRANCH))/hack/release.yaml
 RELEASE_YAML_URL = https://raw.githubusercontent.com/heyvister1/network-operator/$(if $(TAG),$(TAG),$(BRANCH))/hack/release.yaml
