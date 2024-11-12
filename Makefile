@@ -20,7 +20,6 @@ SRC := $(shell echo $(if $(TAG),$(TAG),$(BRANCH)) | sed 's/^v//')
 # Network Operator source tar location
 #REPO_TAR_URL ?= https://github.com/Mellanox/network-operator/archive/refs/$(if $(TAG),tags/$(TAG),heads/$(BRANCH)).tar.gz
 REPO_TAR_URL = https://github.com/heyvister1/network-operator/archive/refs/$(if $(TAG),tags/$(TAG),heads/$(BRANCH)).tar.gz
-
 # release.yaml location
 #RELEASE_YAML_URL ?= https://raw.githubusercontent.com/Mellanox/network-operator/$(if $(TAG),$(TAG),$(BRANCH))/hack/release.yaml
 RELEASE_YAML_URL = https://raw.githubusercontent.com/heyvister1/network-operator/$(if $(TAG),$(TAG),$(BRANCH))/hack/release.yaml
