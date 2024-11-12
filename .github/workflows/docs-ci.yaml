@@ -37,8 +37,11 @@ jobs:
       GH_TOKEN: ${{ secrets.GH_TOKEN_NVIDIA_CI_CD }}
       TAG: ${{ inputs.git_tag }}
       REF_NAME: ${{ github.ref_name }}
-      REF_TYPE: ${{ github.ref_type }}       
+      REF_TYPE: ${{ github.ref_type }}
+      REF_HEAD: ${{ github.head_ref }}
+      PR_NUMBER: ${{ github.event.number }}  
       PR_TITLE_PREFIX: "task: update documentation for"
+      COMMIT_SUFFIX: ${{ inputs.git_tag }}
     steps:
     - uses: actions/checkout@v4
       with:
@@ -52,7 +55,16 @@ jobs:
       run: |
         echo "REF_TYPE:" $REF_TYPE
         echo "REF_NAME:" $REF_NAME
-        BRANCH=$REF_NAME
+        echo "REF_HEAD:" $REF_HEAD
+        if [[ -n $PR_NUMBER ]]; then
+          echo PR_NUMBER=$PR_NUMBER
+          export PR_BRANCH=$REF_HEAD
+          echo "COMMIT_SUFFIX="PR #$PR_NUMBER" >> $GITHUB_ENV
+        fi
+
+        echo "PR_BRANCH:" $PR_BRANCH
+        git pull
+        git checkout test-netops-docs-workflow #$REF_HEAD        
         make api-docs helm-docs generate-docs-versions-var
     - name: Close any existing documentation PRs
       run: |
@@ -66,7 +78,7 @@ jobs:
         DOWNSTREAM_FEATURE_BRANCH: update-docs-for-${{ env.REF_NAME }}
         UPSTREAM_REPO_OWNER: heyvister1
         UPSTREAM_DEFAULT_BRANCH: main
-        COMMIT_MESSAGE: ${{ env.PR_TITLE_PREFIX }} ${{ env.REF_NAME }}
+        COMMIT_MESSAGE: ${{ env.PR_TITLE_PREFIX }} ${{ env.COMMIT_SUFFIX }}
       run: |
         git config user.name  heyvister1
         git config user.email iheyvi@nvidia.com
@@ -74,10 +86,11 @@ jobs:
         gh repo sync $DOWNSTREAM_REPO_OWNER/network-operator-docs --source $UPSTREAM_REPO_OWNER/network-operator-docs --branch $UPSTREAM_DEFAULT_BRANCH
 
         git pull
-        git checkout test-netops-docs-workflow
+        git checkout test-netops-docs-workflow #$REF_HEAD
         git checkout -b $DOWNSTREAM_FEATURE_BRANCH
         git status
         git add docs
+
         git commit -m "$COMMIT_MESSAGE"
 
         git push -u origin $DOWNSTREAM_FEATURE_BRANCH
