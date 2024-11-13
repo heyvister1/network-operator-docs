@@ -48,7 +48,7 @@ General Parameters
      - An optional list of references to secrets to use for pulling any of the Network Operator images.
    * - nfd.deployNodeFeatureRules
      - bool
-     - `true`
+     - `false`
      - Deploy Node Feature Rules to label the nodes with the discovered features.
    * - nfd.enabled
      - bool
@@ -289,7 +289,7 @@ SR-IOV Network Operator Helm chart customization options can be found `here <htt
      -
    * - sriov-network-operator.images.operator
      - string
-     - `"nvcr.io/nvstaging/mellanox/sriov-network-operator:network-operator-24.10.0-beta.5"`
+     - `"nvcr.io/nvstaging/mellanox/sriov-network-operator:network-operator-24.10.0-rc.1"`
      -
    * - sriov-network-operator.images.ovsCni
      - string
@@ -305,15 +305,15 @@ SR-IOV Network Operator Helm chart customization options can be found `here <htt
      -
    * - sriov-network-operator.images.sriovConfigDaemon
      - string
-     - `"nvcr.io/nvstaging/mellanox/sriov-network-operator-config-daemon:network-operator-24.10.0-beta.5"`
+     - `"nvcr.io/nvstaging/mellanox/sriov-network-operator-config-daemon:network-operator-24.10.0-rc.1"`
      -
    * - sriov-network-operator.images.sriovDevicePlugin
      - string
-     - `"ghcr.io/k8snetworkplumbingwg/sriov-network-device-plugin:v3.7.0"`
+     - `"ghcr.io/k8snetworkplumbingwg/sriov-network-device-plugin:v3.8.0"`
      -
    * - sriov-network-operator.images.webhook
      - string
-     - `"nvcr.io/nvstaging/mellanox/sriov-network-operator-webhook:network-operator-24.10.0-beta.5"`
+     - `"nvcr.io/nvstaging/mellanox/sriov-network-operator-webhook:network-operator-24.10.0-rc.1"`
      -
    * - sriov-network-operator.operator.admissionControllers
      - yaml
@@ -421,7 +421,7 @@ NIC Configuration Operator Helm chart customization options can be found `here <
      -
    * - nic-configuration-operator-chart.configDaemon.image.tag
      - string
-     - `"v0.1.5"`
+     - `"v0.1.12"`
      -
    * - nic-configuration-operator-chart.operator.image.name
      - string
@@ -433,7 +433,7 @@ NIC Configuration Operator Helm chart customization options can be found `here <
      -
    * - nic-configuration-operator-chart.operator.image.tag
      - string
-     - `"v0.1.5"`
+     - `"v0.1.12"`
      -
 
 =======================
