@@ -48,11 +48,11 @@ General Parameters
      - An optional list of references to secrets to use for pulling any of the Network Operator images.
    * - nfd.deployNodeFeatureRules
      - bool
-     - `true`
+     - `false`
      - Deploy Node Feature Rules to label the nodes with the discovered features.
    * - nfd.enabled
      - bool
-     - `true`
+     - `false`
      - Deploy Node Feature Discovery operator.
    * - nicConfigurationOperator.enabled
      - bool
