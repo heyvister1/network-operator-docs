@@ -636,7 +636,7 @@ NicClusterPolicySpec defines the desired state of NicClusterPolicy
       +---------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------+
       | Field                                                                                             | Description                                                                                       |
       +===================================================================================================+===================================================================================================+
-      | ``ofedDriver``                                                                                    | OFEDDriver is a specialized driver for NVIDIA NICs which can replace the inbox driver that comes  |
+      | ``ofedDriverTest``                                                                                | OFEDDriver is a specialized driver for NVIDIA NICs which can replace the inbox driver that comes  |
       | :ref:`OFEDDriverSpec <OFEDDriverSpec>`                                                            | with an OS. See https://network.nvidia.com/support/mlnx-ofed-matrix/                              |
       +---------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------+
       | ``rdmaSharedDevicePlugin``                                                                        | RdmaSharedDevicePlugin manages support IB and RoCE HCAs through the Kubernetes device plugin      |
