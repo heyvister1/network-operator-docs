@@ -56,7 +56,7 @@ General Parameters
      - Deploy Node Feature Discovery operator.
    * - nicConfigurationOperator.enabled
      - bool
-     - `false`
+     - `true`
      - Deploy NIC Configuration Operator.
    * - operator.admissionController.enabled
      - bool
