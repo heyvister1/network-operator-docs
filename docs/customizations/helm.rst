@@ -56,7 +56,7 @@ General Parameters
      - Deploy Node Feature Discovery operator.
    * - nicConfigurationOperator.enabled
      - bool
-     - `false`
+     - `true`
      - Deploy NIC Configuration Operator.
    * - operator.admissionController.enabled
      - bool
@@ -157,7 +157,7 @@ General Parameters
      - Enable the use of Driver ToolKit to compile OFED drivers (OpenShift only).
    * - sriovNetworkOperator.enabled
      - bool
-     - `false`
+     - `true`
      - Deploy SR-IOV Network Operator.
    * - upgradeCRDs
      - bool
