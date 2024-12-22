@@ -72,7 +72,7 @@ jobs:
         git commit -m "$COMMIT_MESSAGE"
 
         git push -u origin $DOWNSTREAM_FEATURE_BRANCH --force
-        GH_TOKEN=${{ env.GITHUB_TOKEN }}
+        export GH_TOKEN=${{ env.GITHUB_TOKEN }}
         gh pr create \
           --head $DOWNSTREAM_REPO_OWNER:$DOWNSTREAM_FEATURE_BRANCH \
           --base $UPSTREAM_DEFAULT_BRANCH \
