@@ -46,6 +46,42 @@ General Parameters
      - list
      - `[]`
      - An optional list of references to secrets to use for pulling any of the Network Operator images.
+   * - maintenance-operator-chart.operator.admissionController.certificates.certManager.enable
+     - bool
+     - `false`
+     - use cert-manager for certificates
+   * - maintenance-operator-chart.operator.admissionController.certificates.certManager.generateSelfSigned
+     - bool
+     - `false`
+     - generate self-signed certificates with cert-manager
+   * - maintenance-operator-chart.operator.admissionController.certificates.custom.enable
+     - bool
+     - `false`
+     - enable custom certificates using secrets
+   * - maintenance-operator-chart.operator.admissionController.certificates.secretNames.operator
+     - string
+     - `"maintenance-webhook-cert"`
+     - secret name containing certificates for the operator admission controller
+   * - maintenance-operator-chart.operator.admissionController.enable
+     - bool
+     - `false`
+     - enable admission controller of the operator
+   * - maintenance-operator-chart.operator.image.name
+     - string
+     - `"maintenance-operator"`
+     -
+   * - maintenance-operator-chart.operator.image.repository
+     - string
+     - `"ghcr.io/mellanox"`
+     -
+   * - maintenance-operator-chart.operator.image.tag
+     - string
+     - `"v0.1.1"`
+     -
+   * - maintenanceOperator.enabled
+     - bool
+     - `false`
+     - Deploy Maintenance Operator.
    * - nfd.deployNodeFeatureRules
      - bool
      - `true`
@@ -130,7 +166,7 @@ General Parameters
      - .. code-block:: yaml
 
           limits:
-              cpu: 500m
+              cpu: 900m
               memory: 128Mi
           requests:
               cpu: 5m
@@ -289,7 +325,7 @@ SR-IOV Network Operator Helm chart customization options can be found `here <htt
      -
    * - sriov-network-operator.images.operator
      - string
-     - `"nvcr.io/nvstaging/mellanox/sriov-network-operator:network-operator-24.10.0-rc.1"`
+     - `"nvcr.io/nvstaging/mellanox/sriov-network-operator:network-operator-24.10.0"`
      -
    * - sriov-network-operator.images.ovsCni
      - string
@@ -305,7 +341,7 @@ SR-IOV Network Operator Helm chart customization options can be found `here <htt
      -
    * - sriov-network-operator.images.sriovConfigDaemon
      - string
-     - `"nvcr.io/nvstaging/mellanox/sriov-network-operator-config-daemon:network-operator-24.10.0-rc.1"`
+     - `"nvcr.io/nvstaging/mellanox/sriov-network-operator-config-daemon:network-operator-24.10.0"`
      -
    * - sriov-network-operator.images.sriovDevicePlugin
      - string
@@ -313,7 +349,7 @@ SR-IOV Network Operator Helm chart customization options can be found `here <htt
      -
    * - sriov-network-operator.images.webhook
      - string
-     - `"nvcr.io/nvstaging/mellanox/sriov-network-operator-webhook:network-operator-24.10.0-rc.1"`
+     - `"nvcr.io/nvstaging/mellanox/sriov-network-operator-webhook:network-operator-24.10.0"`
      -
    * - sriov-network-operator.operator.admissionControllers
      - yaml
@@ -421,7 +457,7 @@ NIC Configuration Operator Helm chart customization options can be found `here <
      -
    * - nic-configuration-operator-chart.configDaemon.image.tag
      - string
-     - `"v0.1.12"`
+     - `"v0.1.14"`
      -
    * - nic-configuration-operator-chart.operator.image.name
      - string
@@ -433,7 +469,7 @@ NIC Configuration Operator Helm chart customization options can be found `here <
      -
    * - nic-configuration-operator-chart.operator.image.tag
      - string
-     - `"v0.1.12"`
+     - `"v0.1.14"`
      -
 
 =======================
