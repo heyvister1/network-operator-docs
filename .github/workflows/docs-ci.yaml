@@ -58,9 +58,9 @@ jobs:
     - name: Create PR
       env:
         REF_NAME: ${{ github.ref_name }}
-        DOWNSTREAM_REPO_OWNER: nvidia-ci-cd
+        DOWNSTREAM_REPO_OWNER: heyvister1
         DOWNSTREAM_FEATURE_BRANCH: update-docs-for-${{ env.REF_NAME }}
-        UPSTREAM_REPO_OWNER: Mellanox
+        UPSTREAM_REPO_OWNER: heyvister1
         UPSTREAM_DEFAULT_BRANCH: main
       run: |
         git config user.name heyvister1
