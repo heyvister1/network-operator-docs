@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Life Cycle Management &mdash; NVIDIA Network Operator v24.10.0 documentation</title>
+  <title>Life Cycle Management &mdash; NVIDIA Network Operator v25.01.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" type="text/css" />
@@ -26,7 +26,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Advanced Configurations" href="advanced-configurations.html" />
+    <link rel="next" title="Advanced Configurations" href="advanced/advanced.html" />
     <link rel="prev" title="NicClusterPolicy Custom Resource Example" href="customizations/cr-full-example.html" />
  
 
@@ -60,7 +60,7 @@
 <li class="toctree-l1"><a class="reference internal" href="getting-started-openshift.html">Getting Started with Red Hat OpenShift</a></li>
 <li class="toctree-l1"><a class="reference internal" href="customizations/customization.html">Customization Options and CRDs</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Life Cycle Management</a></li>
-<li class="toctree-l1"><a class="reference internal" href="advanced-configurations.html">Advanced Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced/advanced.html">Advanced Configurations</a></li>
 </ul>
 
         </div>
@@ -191,7 +191,7 @@
 </section>
 <section id="network-operator-upgrade">
 <h2>Network Operator Upgrade<a class="headerlink" href="#network-operator-upgrade" title="Permalink to this headline"></a></h2>
-<p>Before upgrading to Network Operator v1.0 or newer with SR-IOV Network Operator enabled, the following manual actions are required:</p>
+<p>Before upgrading to Network Operator v24.10 or newer with SR-IOV Network Operator enabled, the following manual actions are required:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ kubectl -n nvidia-network-operator scale deployment network-operator-sriov-network-operator --replicas <span class="m">0</span>
 
 $ kubectl -n nvidia-network-operator delete sriovnetworknodepolicies.sriovnetwork.openshift.io default
@@ -207,7 +207,7 @@ $ kubectl -n nvidia-network-operator delete sriovnetworknodepolicies.sriovnetwor
 <h3>Downloading a New Helm Chart<a class="headerlink" href="#downloading-a-new-helm-chart" title="Permalink to this headline"></a></h3>
 <p>To obtain new releases, run:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> <span class="c1"># Download Helm chart</span>
- $ helm fetch <span class="se">\h</span>ttps://helm.ngc.nvidia.com/nvidia/charts/network-operator-24.10.0-rc.1.tgz
+ $ helm fetch <span class="se">\h</span>ttps://helm.ngc.nvidia.com/nvidia/charts/network-operator-25.1.0-beta.2.tgz
  $ ls network-operator-<span class="se">\*</span>.tgz <span class="p">|</span> xargs -n <span class="m">1</span> tar xf
 </pre></div>
 </div>
@@ -325,7 +325,7 @@ $ kubectl -n nvidia-network-operator delete sriovnetworknodepolicies.sriovnetwor
 <span class="w">   </span><span class="nt">ofedDriver</span><span class="p">:</span><span class="w"></span>
 <span class="w">     </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doca-driver</span><span class="w"></span>
 <span class="w">     </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvcr.io/nvidia/mellanox</span><span class="w"></span>
-<span class="w">     </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">24.10-0.7.0.0-0</span><span class="w"></span>
+<span class="w">     </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">25.01-0.2.7.0-0</span><span class="w"></span>
 <span class="w">     </span><span class="nt">upgradePolicy</span><span class="p">:</span><span class="w"></span>
 <span class="w">       </span><span class="c1"># autoUpgrade is a global switch for automatic upgrade feature</span><span class="w"></span>
 <span class="w">       </span><span class="c1"># if set to false all other options are ignored</span><span class="w"></span>
@@ -421,7 +421,7 @@ $ kubectl -n nvidia-network-operator delete sriovnetworknodepolicies.sriovnetwor
 <span class="w">    </span><span class="nt">ofedDriver</span><span class="p">:</span><span class="w"></span>
 <span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doca-driver</span><span class="w"></span>
 <span class="w">      </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvcr.io/nvidia/mellanox</span><span class="w"></span>
-<span class="w">      </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">24.10-0.7.0.0-0</span><span class="w"></span>
+<span class="w">      </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">25.01-0.2.7.0-0</span><span class="w"></span>
 <span class="w">      </span><span class="nt">upgradePolicy</span><span class="p">:</span><span class="w"></span>
 <span class="w">        </span><span class="nt">autoUpgrade</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
 <span class="w">        </span><span class="nt">maxParallelUpgrades</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
@@ -482,6 +482,10 @@ If following the restart the pod still fails, change the NVIDIA DOCA Driver vers
 <h2>Uninstalling the Network Operator<a class="headerlink" href="#uninstalling-the-network-operator" title="Permalink to this headline"></a></h2>
 <section id="uninstalling-network-operator-on-a-vanilla-kubernetes-cluster">
 <h3>Uninstalling Network Operator on a Vanilla Kubernetes Cluster<a class="headerlink" href="#uninstalling-network-operator-on-a-vanilla-kubernetes-cluster" title="Permalink to this headline"></a></h3>
+<p>Delete the NicClusterPolicy:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl delete -n nvidia-network-operator nicclusterpolicies.mellanox.com nic-cluster-policy
+</pre></div>
+</div>
 <p>Uninstall the Network Operator:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>helm uninstall network-operator -n nvidia-network-operator
 </pre></div>
@@ -562,8 +566,8 @@ No resources found
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, NVIDIA.
-      <span class="lastupdated">Last updated on Nov 14, 2024.
+    <p>&#169; Copyright 2025, NVIDIA.
+      <span class="lastupdated">Last updated on Jan 20, 2025.
       </span></p>
   </div>
 

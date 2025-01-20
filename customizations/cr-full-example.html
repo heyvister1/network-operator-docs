@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NicClusterPolicy Custom Resource Example &mdash; NVIDIA Network Operator v24.10.0 documentation</title>
+  <title>NicClusterPolicy Custom Resource Example &mdash; NVIDIA Network Operator v25.01.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" type="text/css" />
@@ -65,7 +65,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../life-cycle-management.html">Life Cycle Management</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../advanced-configurations.html">Advanced Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/advanced.html">Advanced Configurations</a></li>
 </ul>
 
         </div>
@@ -102,7 +102,7 @@
            <div itemprop="articleBody">
              
   <section id="nicclusterpolicy-custom-resource-example">
-<h1>NicClusterPolicy Custom Resource Example<a class="headerlink" href="#nicclusterpolicy-custom-resource-example" title="Permalink to this headline"></a></h1>
+<span id="ncp-cr-example"></span><h1>NicClusterPolicy Custom Resource Example<a class="headerlink" href="#nicclusterpolicy-custom-resource-example" title="Permalink to this headline"></a></h1>
 <p>The following NIC Cluster Policy example contains all the sub-components that NVIDA Network Operator can deploy.
 This example should serve as a reference, it is not recommended to apply it as is to your cluster.</p>
 <p><strong>NOTE:</strong> Edit the example to contain only the required components for the target environment.</p>
@@ -114,7 +114,7 @@ This example should serve as a reference, it is not recommended to apply it as i
 <span class="w">   </span><span class="nt">ofedDriver</span><span class="p">:</span><span class="w"></span>
 <span class="w">     </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doca-driver</span><span class="w"></span>
 <span class="w">     </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvcr.io/nvidia/mellanox</span><span class="w"></span>
-<span class="w">     </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">24.10-0.7.0.0-0</span><span class="w"></span>
+<span class="w">     </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">25.01-0.2.7.0-0</span><span class="w"></span>
 <span class="w">     </span><span class="nt">upgradePolicy</span><span class="p">:</span><span class="w"></span>
 <span class="w">       </span><span class="nt">autoUpgrade</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
 <span class="w">       </span><span class="nt">drain</span><span class="p">:</span><span class="w"></span>
@@ -135,7 +135,7 @@ This example should serve as a reference, it is not recommended to apply it as i
 <span class="w">   </span><span class="nt">rdmaSharedDevicePlugin</span><span class="p">:</span><span class="w"></span>
 <span class="w">     </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">k8s-rdma-shared-dev-plugin</span><span class="w"></span>
 <span class="w">     </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/mellanox</span><span class="w"></span>
-<span class="w">     </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sha-4f3eb2224b8b5f97be3f17441ddee8d41753b7d5</span><span class="w"></span>
+<span class="w">     </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1.5.2</span><span class="w"></span>
 <span class="w">     </span><span class="c1"># The config below directly propagates to k8s-rdma-shared-device-plugin configuration.</span><span class="w"></span>
 <span class="w">     </span><span class="c1"># Replace &#39;devices&#39; with your (RDMA capable) netdevice name.</span><span class="w"></span>
 <span class="w">     </span><span class="nt">config</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
@@ -181,7 +181,6 @@ This example should serve as a reference, it is not recommended to apply it as i
 <span class="w">       </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">multus-cni</span><span class="w"></span>
 <span class="w">       </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/k8snetworkplumbingwg</span><span class="w"></span>
 <span class="w">       </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v4.1.0</span><span class="w"></span>
-<span class="w">       </span><span class="nt">config</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&#39;</span><span class="w"></span>
 <span class="w">     </span><span class="nt">ipamPlugin</span><span class="p">:</span><span class="w"></span>
 <span class="w">       </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">whereabouts</span><span class="w"></span>
 <span class="w">       </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/k8snetworkplumbingwg</span><span class="w"></span>
@@ -218,8 +217,8 @@ This example should serve as a reference, it is not recommended to apply it as i
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, NVIDIA.
-      <span class="lastupdated">Last updated on Nov 14, 2024.
+    <p>&#169; Copyright 2025, NVIDIA.
+      <span class="lastupdated">Last updated on Jan 20, 2025.
       </span></p>
   </div>
 
